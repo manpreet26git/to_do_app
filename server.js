@@ -7,7 +7,7 @@ let app = express()
 //give permission to server to access public.js
 app.use(express.static("public"))
 //connect to your mongodb acc
-let connectionString = 'mongodb+srv://manpreet_nodejs:manpreet_nodejs@cluster0.cysgj.mongodb.net/to_do_app?retryWrites=true&w=majority'
+let connectionString = ''//removed for security
 let db
 
 let port = process.env.PORT
@@ -23,7 +23,7 @@ app.use(passwordProtected)//for all our url/routes this function will be used
 function passwordProtected(req, res, next){
     res.set('WWW-Authenticate', 'Basic realm="Simple Todo App')
     console.log(req.headers.authorization)
-    if(req.headers.authorization == "Basic bWFucHJlZXQ6bWFucHJlZXQ="){ //manpreet manpreet
+    if(req.headers.authorization == ""){ //removed for security
         next() //this function is done now go ahead and run the next callback function
     }else{
         res.status(401).send("Authentication required")
